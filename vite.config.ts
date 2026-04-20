@@ -10,7 +10,11 @@ const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), viteSingleFile()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    viteSingleFile(),
+  ],
   base: "/",
   resolve: {
     alias: {
@@ -20,5 +24,12 @@ export default defineConfig({
   build: {
     outDir: "dist",
     assetsDir: "assets",
+    minify: "esbuild",
+    target: "esnext",
+    cssMinify: true,
+    chunkSizeWarningLimit: 1000,
+  },
+  esbuild: {
+    drop: process.env.NODE_ENV === "production" ? ["console", "debugger"] : [],
   },
 });
