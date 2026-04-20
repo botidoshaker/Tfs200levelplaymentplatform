@@ -1,3 +1,11 @@
+```
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+
+# Environment variables
 ```gitignore
 # Dependencies
 node_modules/
@@ -16,6 +24,9 @@ build/
 .env
 .env.local
 *.env.*
+
+# IDE
+.vscode/
 
 # Editors
 .vscode/
