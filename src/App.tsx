@@ -27,6 +27,7 @@ import {
   Lock
 } from 'lucide-react';
 import DashboardSettings from './pages/dashboard/Settings';
+import PaystackPayment from './components/PaystackPayment';
 
 // Types
 declare global {
@@ -1632,60 +1633,38 @@ const ContributePage = () => {
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [scriptLoaded, setScriptLoaded] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<'wallet' | 'transfer'>('wallet');
 
   const contribution = JSON.parse(localStorage.getItem('easycollect_current_contribution') || '{}');
   const amount = contribution.amount || 3000;
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://js.paystack.co/v1/inline.js';
-    script.async = true;
-    script.onload = () => setScriptLoaded(true);
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  const handlePay = () => {
-    if (paymentMethod === 'transfer') {
-      navigate('/payment/bank-transfer');
-      return;
+  const handlePaymentSuccess = (reference: string, verified: boolean) => {
+    if (verified) {
+      setIsProcessing(false);
+      localStorage.setItem('easycollect_payment_verified', 'true');
+      localStorage.setItem('easycollect_payment_ref', reference);
+      navigate('/payment/success');
     }
-
-    if (!window.PaystackPop) {
-      alert('Payment system loading... Please try again.');
-      return;
-    }
-
-    setIsProcessing(true);
-    const reference = 'EC_' + Date.now();
-    
-    localStorage.setItem('easycollect_payment_reference', reference);
-    localStorage.setItem('easycollect_payment_amount', amount.toString());
-
-    const handler = window.PaystackPop.setup({
-      key: 'pk_test_9721481771baa92fa5c2c78e1c94f2b61ecdd38b',
-      email: contribution.email || 'contributor@example.com',
-      amount: amount * 100,
-      ref: reference,
-      currency: 'NGN',
-      channels: ['card', 'bank', 'ussd', 'qr', 'mobile_money'],
-      callback: (response: { reference: string }) => {
-        setIsProcessing(false);
-        localStorage.setItem('easycollect_payment_verified', 'true');
-        localStorage.setItem('easycollect_payment_ref', response.reference);
-        navigate('/payment/success');
-      },
-      onClose: () => {
-        setIsProcessing(false);
-      },
-    });
-
-    handler.openIframe();
   };
+
+  const handlePaymentClose = () => {
+    setIsProcessing(false);
+  };
+
+  if (paymentMethod === 'transfer') {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <div className="bg-green-600 text-white p-4">
+          <div className="max-w-md mx-auto flex items-center justify-center">
+            <span className="font-semibold text-lg">Deposit</span>
+          </div>
+        </div>
+        <div className="max-w-md mx-auto p-4">
+          <BankTransferContent amount={amount} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -1732,7 +1711,10 @@ const CheckoutPage = () => {
 
             {/* Bank Transfer Option */}
             <button
-              onClick={() => setPaymentMethod('transfer')}
+              onClick={() => {
+                setPaymentMethod('transfer');
+                navigate('/payment/bank-transfer');
+              }}
               className={`w-full p-4 flex items-center justify-between ${
                 paymentMethod === 'transfer' ? 'bg-purple-50' : ''
               }`}
@@ -1747,21 +1729,25 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Pay Button */}
-        <button
-          onClick={handlePay}
-          disabled={isProcessing || !scriptLoaded}
-          className="w-full py-4 bg-purple-600 text-white rounded-xl font-semibold text-lg disabled:opacity-50"
-        >
-          {isProcessing ? <Loader2 className="w-6 h-6 animate-spin mx-auto" /> : 'Pay Now'}
-        </button>
+        {/* Paystack Payment Component */}
+        <PaystackPayment
+          email={contribution.email || 'contributor@example.com'}
+          amount={amount}
+          reference={'EC_' + Date.now()}
+          onSuccess={handlePaymentSuccess}
+          onClose={handlePaymentClose}
+          metadata={{
+            contributorName: contribution.name,
+            contributorPhone: contribution.phone,
+          }}
+        />
       </div>
     </div>
   );
 };
 
-// Bank Transfer Page - Shows host bank details
-const BankTransferPage = () => {
+// Bank Transfer Content Component
+const BankTransferContent = ({ amount }: { amount: number }) => {
   const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState({ hours: 1, minutes: 1, seconds: 10 });
   const [copied, setCopied] = useState(false);
@@ -1773,9 +1759,6 @@ const BankTransferPage = () => {
     accountNumber: '8718888028',
     accountName: 'EasyCollect User'
   };
-
-  const contribution = JSON.parse(localStorage.getItem('easycollect_current_contribution') || '{}');
-  const amount = contribution.amount || 3000;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -1976,7 +1959,7 @@ function App() {
       {/* Public Contribution Routes - No auth required */}
       <Route path="/contribute/:slug" element={<ContributePage />} />
       <Route path="/checkout" element={<CheckoutPage />} />
-      <Route path="/payment/bank-transfer" element={<BankTransferPage />} />
+      <Route path="/payment/bank-transfer" element={<BankTransferContent amount={3000} />} />
       <Route path="/payment/success" element={<PaymentSuccessPage />} />
 
       {/* Protected Dashboard Routes */}
