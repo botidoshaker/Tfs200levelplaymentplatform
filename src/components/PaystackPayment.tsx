@@ -33,7 +33,7 @@ declare global {
   }
 }
 
-const PAYSTACK_PUBLIC_KEY = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY || 'pk_test_xxx';
+const PAYSTACK_PUBLIC_KEY = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY || 'pk_test_9721481771baa92fa5c2c78e1c94f2b61ecdd38b';
 
 // Verify payment reference with backend API (NOT directly with Paystack)
 const verifyPayment = async (reference: string): Promise<{
