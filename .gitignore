@@ -6,27 +6,33 @@ node_modules/
 dist/
 
 # Environment variables
+```gitignore
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.js
+*.css
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Environment
 .env
 .env.local
-.env.*
+*.env.*
 
-# IDE and editor settings
+# IDE
+.vscode/
+
+# Editors
 .vscode/
 .idea/
 
-# Logs
-*.log
-
-# Temporary files
-*.tmp
-*.swp
-*.swo
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Python cache
+# Python
 __pycache__/
 *.pyc
 *.pyo
