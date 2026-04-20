@@ -1,15 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Nigerian Green Colors */
+:root {
+  --ng-green: #008751;
+  --ng-green-dark: #006b3f;
+  --ng-green-light: #00a862;
+  --ng-white: #ffffff;
 }
 
 /* Custom scrollbar */
@@ -23,12 +31,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #7c3aed;
+  background: linear-gradient(180deg, #008751, #006b3f);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6d28d9;
+  background: linear-gradient(180deg, #00a862, #008751);
 }
 
 /* Animations */
@@ -162,13 +170,27 @@ html {
 /* Form focus styles */
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  border-color: #008751;
+  box-shadow: 0 0 0 3px rgba(0, 135, 81, 0.2);
 }
 
 /* Button transitions */
 button {
   transition: all 0.2s ease;
+}
+
+/* Nigerian-themed button */
+.btn-naija {
+  background: linear-gradient(135deg, #008751 0%, #006b3f 100%);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 135, 81, 0.3);
+}
+
+.btn-naija:hover {
+  background: linear-gradient(135deg, #00a862 0%, #008751 100%);
+  box-shadow: 0 6px 20px rgba(0, 135, 81, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Card styles */
@@ -193,18 +215,50 @@ button {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, #7c3aed, #ec4899);
+  background-image: linear-gradient(135deg, #008751, #00a862);
+}
+
+/* Nigerian-inspired gradient */
+.gradient-naija {
+  background: linear-gradient(135deg, #008751 0%, #006b3f 50%, #00a862 100%);
 }
 
 /* Pattern background */
 .pattern-bg {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%237c3aed' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23008751' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* EasyCollect pattern background */
+/* EasyCollect pattern background - Nigerian theme */
 .bg-easycollect-pattern {
-  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #f3f4f6 100%);
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%237c3aed' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #f0fdf4 100%);
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23008751' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Trust badge styles */
+.trust-badge {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1px solid #86efac;
+  box-shadow: 0 4px 12px rgba(0, 135, 81, 0.1);
+}
+
+/* Payment card highlight */
+.payment-highlight {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 2px solid #f59e0b;
+}
+
+/* Success animation */
+@keyframes success-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 135, 81, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(0, 135, 81, 0);
+  }
+}
+
+.success-pulse {
+  animation: success-pulse 2s infinite;
 }
 
 /* Glass effect */
@@ -233,23 +287,18 @@ button {
 input[type="checkbox"] {
   border-radius: 0.25rem;
   border-color: #d1d5db;
-  color: #7c3aed;
+  color: #008751;
 }
 
 input[type="checkbox"]:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 135, 81, 0.2);
 }
 
-/* Progress bar animation */
-.progress-bar {
-  transition: all 0.5s ease-out;
-}
-
-/* Tab styles */
+/* Tab styles - Nigerian theme */
 .tab-active {
-  border-color: #7c3aed;
-  color: #7c3aed;
+  border-color: #008751;
+  color: #008751;
 }
 
 .tab-inactive {
@@ -261,10 +310,10 @@ input[type="checkbox"]:focus {
   color: #374151;
 }
 
-/* Status badges */
+/* Status badges - Nigerian theme */
 .badge-success {
-  background-color: #ede9fe;
-  color: #6d28d9;
+  background-color: #dcfce7;
+  color: #166534;
 }
 
 .badge-pending {
@@ -277,7 +326,7 @@ input[type="checkbox"]:focus {
   color: #4b5563;
 }
 
-/* Payment method cards */
+/* Payment method cards - Nigerian theme */
 .payment-card {
   display: flex;
   align-items: center;
@@ -290,8 +339,8 @@ input[type="checkbox"]:focus {
 }
 
 .payment-card-active {
-  border-color: #7c3aed;
-  background-color: #f5f3ff;
+  border-color: #008751;
+  background-color: #f0fdf4;
 }
 
 .payment-card-inactive {
@@ -299,5 +348,12 @@ input[type="checkbox"]:focus {
 }
 
 .payment-card-inactive:hover {
-  border-color: #a78bfa;
+  border-color: #86efac;
 }
+
+/* Progress bar animation */
+.progress-bar {
+  transition: all 0.5s ease-out;
+}
+
+
