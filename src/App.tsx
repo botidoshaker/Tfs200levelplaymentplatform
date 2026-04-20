@@ -868,16 +868,16 @@ const DashboardPage = () => {
               <Wallet className="w-6 h-6 mb-2 text-blue-500 group-hover:scale-110 transition-transform" />
               <p className="font-semibold text-sm text-gray-900">Bank Settings</p>
             </Link>
-            <button className="bg-white p-4 rounded-2xl border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 group">
+            <Link to="/dashboard/collections" className="bg-white p-4 rounded-2xl border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 group">
               <Share2 className="w-6 h-6 mb-2 text-green-500 group-hover:scale-110 transition-transform" />
               <p className="font-semibold text-sm text-gray-900">Share Link</p>
-            </button>
+            </Link>
           </div>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-2 gap-4 mb-8">
             {/* Total Funds Created */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+            <Link to="/dashboard/collections" className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group block">
               <div className="flex items-center justify-between mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Wallet className="w-6 h-6 text-white" />
@@ -888,10 +888,10 @@ const DashboardPage = () => {
               </div>
               <p className="text-3xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">{stats.totalCollections}</p>
               <p className="text-gray-500 text-sm mt-1">Total Funds Created</p>
-            </div>
+            </Link>
 
             {/* Total Amount Raised */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+            <Link to="/dashboard/collections" className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group block">
               <div className="flex items-center justify-between mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <span className="text-white text-xl font-bold">₦</span>
@@ -902,10 +902,10 @@ const DashboardPage = () => {
               </div>
               <p className="text-3xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">₦{stats.totalCollected.toLocaleString()}</p>
               <p className="text-gray-500 text-sm mt-1">Total Amount Raised</p>
-            </div>
+            </Link>
 
             {/* Total Contributors */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+            <Link to="/dashboard/contributors" className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group block">
               <div className="flex items-center justify-between mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Users className="w-6 h-6 text-white" />
@@ -916,10 +916,10 @@ const DashboardPage = () => {
               </div>
               <p className="text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{stats.totalContributors}</p>
               <p className="text-gray-500 text-sm mt-1">Total Contributors</p>
-            </div>
+            </Link>
 
             {/* Active Funds */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+            <Link to="/dashboard/collections" className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group block">
               <div className="flex items-center justify-between mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <TrendingUp className="w-6 h-6 text-white" />
@@ -930,15 +930,24 @@ const DashboardPage = () => {
               </div>
               <p className="text-3xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors">{stats.activeCollections}</p>
               <p className="text-gray-500 text-sm mt-1">Active Funds</p>
-            </div>
+            </Link>
           </div>
 
           {/* Recent Collections */}
           {collections.length > 0 && (
             <div className="space-y-4">
-              <h2 className="text-lg font-semibold text-gray-900">Recent Collections</h2>
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-gray-900">Recent Collections</h2>
+                <Link to="/dashboard/collections" className="text-purple-600 text-sm font-semibold hover:underline flex items-center gap-1">
+                  View All <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
               {collections.slice(0, 3).map((collection) => (
-                <div key={collection.id} className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                <Link 
+                  key={collection.id} 
+                  to={`/contribute/${collection.slug}`}
+                  className="block bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1"
+                >
                   <h3 className="font-semibold text-gray-900 mb-2">{collection.title}</h3>
                   <div className="flex items-center gap-2">
                     <span className="bg-blue-100 text-blue-700 text-xs font-medium px-3 py-1 rounded-full">
@@ -950,7 +959,11 @@ const DashboardPage = () => {
                       </span>
                     )}
                   </div>
-                </div>
+                  <div className="mt-3 flex items-center justify-between text-sm">
+                    <span className="text-gray-500">{collection.participants} contributors</span>
+                    <span className="text-emerald-600 font-semibold">₦{collection.collected.toLocaleString()}</span>
+                  </div>
+                </Link>
               ))}
             </div>
           )}
@@ -1767,7 +1780,7 @@ const BankTransferPage = () => {
   const [copied, setCopied] = useState(false);
 
   // Get host's bank details from localStorage
-  const currentUser = JSON.parse(localStorage.getItem('easycollect_current_user') || '{}');
+  const currentUser = JSON.parse(localStorage.getItem('easycollect_user') || '{}');
   const bankDetails = currentUser.bankDetails || {
     bankName: 'Palmpay',
     accountNumber: '8718888028',
