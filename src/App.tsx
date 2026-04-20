@@ -154,17 +154,17 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 flex items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <img src="/images/nigerian-campus.jpg" alt="Campus" className="w-full h-full object-cover" />
       </div>
-      <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl w-full max-w-md p-8 relative z-10">
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl w-full max-w-md p-8 relative z-10 border border-green-100">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-emerald-700 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200">
             <Wallet className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="text-gray-600">Sign in to manage your student collections</p>
+          <p className="text-gray-600">Sign in to Nigeria's trusted collection platform</p>
         </div>
 
         {error && (
@@ -210,7 +210,7 @@ const LoginPage = () => {
 
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+            className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-xl font-semibold hover:shadow-xl hover:shadow-green-200 transition-all hover:-translate-y-0.5"
           >
             Sign In
           </button>
@@ -218,7 +218,7 @@ const LoginPage = () => {
 
         <p className="text-center mt-6 text-gray-600">
           Don't have an account?{' '}
-          <Link to="/register" className="text-purple-600 font-semibold hover:underline">
+          <Link to="/register" className="text-green-600 font-semibold hover:underline">
             Create Account
           </Link>
         </p>
@@ -255,13 +255,13 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left Side - Gradient Background */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 relative overflow-hidden">
+      {/* Left Side - Nigerian Green Gradient Background */}
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-green-600 via-emerald-700 to-green-800 relative overflow-hidden">
         {/* Animated shapes */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-400/10 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-green-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-green-400/10 rounded-full blur-2xl"></div>
         </div>
         
         <div className="relative z-10 flex flex-col justify-center px-16 text-white">
@@ -272,7 +272,7 @@ const RegisterPage = () => {
           <h1 className="text-5xl font-bold mb-4 animate-fade-in">
             Get Started
           </h1>
-          <p className="text-purple-200 text-lg mb-8">
+          <p className="text-green-100 text-lg mb-8">
             Already have an account?
           </p>
           <Link 
@@ -282,19 +282,25 @@ const RegisterPage = () => {
             Log in
           </Link>
           
-          {/* Trust badges */}
-          <div className="mt-16 flex gap-6">
-            <div className="flex items-center gap-2 text-sm text-purple-200">
-              <CheckCircle className="w-5 h-5" />
-              <span>Free Forever</span>
+          {/* Trust badges - Nigerian theme */}
+          <div className="mt-16 space-y-4">
+            <div className="flex items-center gap-3 text-sm text-green-100">
+              <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                <CheckCircle className="w-4 h-4" />
+              </div>
+              <span>Free Forever for Nigerian Students</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-purple-200">
-              <CheckCircle className="w-5 h-5" />
-              <span>No Credit Card</span>
+            <div className="flex items-center gap-3 text-sm text-green-100">
+              <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                <CheckCircle className="w-4 h-4" />
+              </div>
+              <span>Secure Bank Transfer Payments</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-purple-200">
-              <CheckCircle className="w-5 h-5" />
-              <span>Instant Setup</span>
+            <div className="flex items-center gap-3 text-sm text-green-100">
+              <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                <CheckCircle className="w-4 h-4" />
+              </div>
+              <span>Trusted by 10,000+ Students</span>
             </div>
           </div>
         </div>
@@ -303,10 +309,13 @@ const RegisterPage = () => {
       {/* Right Side - Form */}
       <div className="flex-1 flex items-center justify-center p-8 bg-gray-50">
         <div className="w-full max-w-md">
-          <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div className="bg-white rounded-2xl shadow-xl p-8 border border-green-100">
             <div className="flex justify-between items-start mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Create account</h2>
-              <Link to="#" className="text-sm text-gray-500 hover:text-purple-600">Need help?</Link>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Create account</h2>
+                <p className="text-sm text-gray-500 mt-1">Join Nigeria's trusted collection platform</p>
+              </div>
+              <Link to="#" className="text-sm text-gray-500 hover:text-green-600">Need help?</Link>
             </div>
 
             {error && (
@@ -351,7 +360,7 @@ const RegisterPage = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                   placeholder="host@example.com"
                   required
                 />
@@ -363,7 +372,7 @@ const RegisterPage = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                   placeholder="••••••••"
                   required
                 />
@@ -375,7 +384,7 @@ const RegisterPage = () => {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                   placeholder="John Doe"
                   required
                 />
@@ -386,7 +395,7 @@ const RegisterPage = () => {
                   type="checkbox"
                   checked={agreed}
                   onChange={(e) => setAgreed(e.target.checked)}
-                  className="w-5 h-5 text-purple-600 rounded mt-0.5"
+                  className="w-5 h-5 text-green-600 rounded mt-0.5"
                 />
                 <span className="text-sm text-gray-600">
                   I accept the terms of the agreement
@@ -395,7 +404,7 @@ const RegisterPage = () => {
 
               <button
                 type="submit"
-                className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-purple-200"
+                className="w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-green-200"
               >
                 Sign up
               </button>
@@ -403,7 +412,7 @@ const RegisterPage = () => {
 
             <p className="text-center mt-6 text-sm text-gray-600 lg:hidden">
               Already have an account?{' '}
-              <Link to="/login" className="text-purple-600 font-semibold hover:underline">
+              <Link to="/login" className="text-green-600 font-semibold hover:underline">
                 Log in
               </Link>
             </p>
@@ -445,10 +454,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       {/* Mobile Header */}
       <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
         <Link to="/dashboard" className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-emerald-700 rounded-lg flex items-center justify-center">
             <Wallet className="w-5 h-5 text-white" />
           </div>
-          <span className="font-bold text-xl text-purple-700">EasyCollect</span>
+          <span className="font-bold text-xl text-green-700">EasyCollect</span>
         </Link>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -469,7 +478,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   location.pathname === item.path
-                    ? 'bg-emerald-50 text-emerald-700'
+                    ? 'bg-green-50 text-green-700'
                     : 'text-gray-600 hover:bg-gray-50'
                 }`}
               >
@@ -493,10 +502,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <aside className="hidden lg:flex flex-col w-64 bg-white border-r border-gray-200 h-screen sticky top-0">
           <div className="p-6">
             <Link to="/dashboard" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-emerald-700 rounded-xl flex items-center justify-center">
                 <Wallet className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-xl text-purple-700">EasyCollect</span>
+              <span className="font-bold text-xl text-green-700">EasyCollect</span>
             </Link>
           </div>
 
@@ -507,7 +516,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 to={item.path}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   location.pathname === item.path
-                    ? 'bg-emerald-50 text-emerald-700'
+                    ? 'bg-green-50 text-green-700'
                     : 'text-gray-600 hover:bg-gray-50'
                 }`}
               >
@@ -519,7 +528,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
           <div className="p-4 border-t border-gray-200">
             <div className="flex items-center gap-3 px-4 py-3 mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-emerald-700 rounded-full flex items-center justify-center">
                 <User className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -555,10 +564,10 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-emerald-700 rounded-xl flex items-center justify-center">
                 <Wallet className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-xl text-purple-700">EasyCollect</span>
+              <span className="font-bold text-xl text-green-700">EasyCollect</span>
             </Link>
             <div className="flex items-center gap-4">
               <Link to="/login" className="text-gray-600 hover:text-gray-900 font-medium">
@@ -566,7 +575,7 @@ const LandingPage = () => {
               </Link>
               <Link
                 to="/register"
-                className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:shadow-lg transition-all"
+                className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-5 py-2.5 rounded-xl font-semibold hover:shadow-lg transition-all"
               >
                 Get Started
               </Link>
@@ -578,11 +587,11 @@ const LandingPage = () => {
       {/* Hero */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
         {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-pink-50">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-white to-emerald-50">
           <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
             <div className="absolute top-0 right-1/4 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-            <div className="absolute -bottom-32 left-1/3 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+            <div className="absolute -bottom-32 left-1/3 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
           </div>
           {/* Grid pattern overlay */}
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
@@ -592,14 +601,14 @@ const LandingPage = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-fadeInUp">
-                <span className="flex h-2 w-2 rounded-full bg-purple-600 animate-pulse"></span>
+              <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-fadeInUp">
+                <span className="flex h-2 w-2 rounded-full bg-green-600 animate-pulse"></span>
                 Trusted by 10,000+ Students
               </div>
               
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-fadeInUp">
                 Collect Money for{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-emerald-500 to-amber-400">
                   Class Projects & Events
                 </span>
               </h1>
@@ -611,14 +620,14 @@ const LandingPage = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8 animate-fadeInUp delay-200">
                 <Link
                   to="/register"
-                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-purple-500/25 transition-all hover:-translate-y-1 group"
+                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-emerald-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-green-500/25 transition-all hover:-translate-y-1 group"
                 >
                   Get Started
                   <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   to="/contribute/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-gray-700 border-2 border-gray-200 px-8 py-4 rounded-xl font-semibold hover:border-purple-500 hover:text-purple-600 transition-all hover:-translate-y-1 hover:shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-gray-700 border-2 border-gray-200 px-8 py-4 rounded-xl font-semibold hover:border-purple-500 hover:text-green-600 transition-all hover:-translate-y-1 hover:shadow-lg"
                 >
                   Learn More
                 </Link>
@@ -665,8 +674,8 @@ const LandingPage = () => {
                 
                 <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-xl p-4 z-20 animate-float animation-delay-2000">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                      <Users className="w-5 h-5 text-purple-600" />
+                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                      <Users className="w-5 h-5 text-green-600" />
                     </div>
                     <div>
                       <p className="text-xs text-gray-500">New Contributor</p>
@@ -679,7 +688,7 @@ const LandingPage = () => {
                 <div className="bg-white rounded-3xl shadow-2xl p-6 border border-gray-100 transform rotate-2 hover:rotate-0 transition-transform duration-500">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-700 rounded-xl flex items-center justify-center">
                         <Wallet className="w-6 h-6 text-white" />
                       </div>
                       <div>
@@ -702,7 +711,7 @@ const LandingPage = () => {
                   </div>
                   
                   <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full w-3/4 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full"></div>
+                    <div className="h-full w-3/4 bg-gradient-to-r from-purple-600 to-emerald-500 rounded-full"></div>
                   </div>
                   <p className="text-sm text-gray-500 mt-2">75% of goal reached</p>
                 </div>
@@ -727,7 +736,7 @@ const LandingPage = () => {
               { step: '03', title: 'Share & Collect', desc: 'Send link to classmates via WhatsApp' }
             ].map((item, i) => (
               <div key={i} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center hover-lift">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-emerald-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <span className="text-2xl font-bold text-white">{item.step}</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
@@ -744,19 +753,19 @@ const LandingPage = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image */}
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-orange-500/20 rounded-3xl blur-3xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-orange-500/20 rounded-3xl blur-3xl"></div>
               <img 
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80" 
                 alt="Student using phone" 
                 className="relative rounded-3xl shadow-2xl w-full object-cover h-[500px]"
               />
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-pink-400 to-orange-400 rounded-full opacity-60 blur-2xl"></div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-60 blur-2xl"></div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-green-400 to-amber-400 rounded-full opacity-60 blur-2xl"></div>
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-purple-400 to-green-400 rounded-full opacity-60 blur-2xl"></div>
             </div>
             
             {/* Content */}
             <div className="lg:pl-8">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-green-400 to-amber-400 bg-clip-text text-transparent">
                 How to Contribute
               </h2>
               <p className="text-gray-300 text-lg mb-8">
@@ -770,7 +779,7 @@ const LandingPage = () => {
                   { step: '3', title: 'Pay Instantly', desc: 'Transfer to the virtual account number shown' }
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="font-bold text-white">{item.step}</span>
                     </div>
                     <div>
@@ -781,7 +790,7 @@ const LandingPage = () => {
                 ))}
               </div>
               
-              <div className="mt-10 p-4 bg-pink-500/10 border border-pink-500/20 rounded-xl">
+              <div className="mt-10 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
                 <p className="text-pink-300 text-sm flex items-center gap-2">
                   <AlertCircle className="w-4 h-4" />
                   New collections are added regularly. Check back often or subscribe to notifications so you never miss a deadline.
@@ -809,7 +818,7 @@ const DashboardPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Animated Header */}
-      <div className="bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-800 text-white p-4 sticky top-0 z-10 shadow-lg">
+      <div className="bg-gradient-to-r from-purple-600 via-green-700 to-teal-800 text-white p-4 sticky top-0 z-10 shadow-lg">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center animate-pulse">
@@ -826,7 +835,7 @@ const DashboardPage = () => {
             </button>
             <Link
               to="/dashboard/create-collection"
-              className="flex items-center gap-2 bg-white text-purple-600 px-4 py-2 rounded-xl font-semibold text-sm hover:shadow-lg transition-all hover:-translate-y-0.5"
+              className="flex items-center gap-2 bg-white text-green-600 px-4 py-2 rounded-xl font-semibold text-sm hover:shadow-lg transition-all hover:-translate-y-0.5"
             >
               <Plus className="w-5 h-5" />
               Create Fund
@@ -848,7 +857,7 @@ const DashboardPage = () => {
               </p>
             </div>
             <div className="hidden sm:flex items-center gap-3 bg-white px-4 py-2 rounded-2xl shadow-sm">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold">
                 {user?.name?.charAt(0).toUpperCase() || 'U'}
               </div>
               <div>
@@ -860,7 +869,7 @@ const DashboardPage = () => {
 
           {/* Quick Actions */}
           <div className="grid grid-cols-3 gap-3 mb-6">
-            <Link to="/dashboard/create-collection" className="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1 group">
+            <Link to="/dashboard/create-collection" className="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1 group">
               <Plus className="w-6 h-6 mb-2 group-hover:scale-110 transition-transform" />
               <p className="font-semibold text-sm">Create Fund</p>
             </Link>
@@ -879,14 +888,14 @@ const DashboardPage = () => {
             {/* Total Funds Created */}
             <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
               <div className="flex items-center justify-between mb-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Wallet className="w-6 h-6 text-white" />
                 </div>
                 <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
                   All Time
                 </span>
               </div>
-              <p className="text-3xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">{stats.totalCollections}</p>
+              <p className="text-3xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">{stats.totalCollections}</p>
               <p className="text-gray-500 text-sm mt-1">Total Funds Created</p>
             </div>
 
@@ -1093,7 +1102,7 @@ const CreateCollectionPage = () => {
 
             <button
               onClick={() => setStep(2)}
-              className="w-full mt-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold"
+              className="w-full mt-6 py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-xl font-semibold"
             >
               Continue
             </button>
@@ -1251,7 +1260,7 @@ const CreateCollectionPage = () => {
               <button
                 onClick={() => setStep(3)}
                 disabled={!title}
-                className="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold disabled:opacity-50"
+                className="flex-1 py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-xl font-semibold disabled:opacity-50"
               >
                 Continue
               </button>
@@ -1284,7 +1293,7 @@ const CreateCollectionPage = () => {
                   <span className="text-gray-600 block mb-2">Custom Fields</span>
                   <div className="flex flex-wrap gap-2">
                     {customFields.map(f => (
-                      <span key={f.id} className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-sm">
+                      <span key={f.id} className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">
                         {f.label} {f.required && '*'}
                       </span>
                     ))}
@@ -1309,7 +1318,7 @@ const CreateCollectionPage = () => {
               </button>
               <button
                 onClick={handleCreate}
-                className="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold"
+                className="flex-1 py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-xl font-semibold"
               >
                 Create Collection
               </button>
@@ -1359,7 +1368,7 @@ const CreateCollectionPage = () => {
 
             <Link
               to="/dashboard"
-              className="block w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold text-center"
+              className="block w-full py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-xl font-semibold text-center"
             >
               Go to Dashboard
             </Link>
@@ -1381,7 +1390,7 @@ const CollectionsPage = () => {
           <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">My Collections</h1>
           <Link
             to="/dashboard/create-collection"
-            className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-4 py-2 rounded-xl font-semibold"
+            className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-emerald-700 text-white px-4 py-2 rounded-xl font-semibold"
           >
             <PlusCircle className="w-5 h-5" />
             New
@@ -1617,7 +1626,7 @@ const ContributePage = () => {
             <button
               onClick={handleProceedToPayment}
               disabled={!formData.name || !formData.email || !formData.phone}
-              className="w-full mt-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold disabled:opacity-50"
+              className="w-full mt-6 py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-xl font-semibold disabled:opacity-50"
             >
               Proceed to Payment
             </button>
@@ -1702,11 +1711,11 @@ const CheckoutPage = () => {
         {/* Amount Card */}
         <div className="bg-white rounded-2xl p-6 shadow-sm mb-4">
           <div className="text-center">
-            <div className="inline-block bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-3">
+            <div className="inline-block bg-green-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-3">
               EasyCollect
             </div>
             <p className="text-gray-500 text-sm mb-1">Payment Collection</p>
-            <p className="text-4xl font-bold text-purple-600">₦{amount.toLocaleString()}.00</p>
+            <p className="text-4xl font-bold text-green-600">₦{amount.toLocaleString()}.00</p>
           </div>
         </div>
 
@@ -1719,14 +1728,14 @@ const CheckoutPage = () => {
             <button
               onClick={() => setPaymentMethod('wallet')}
               className={`w-full p-4 flex items-center justify-between border-b border-gray-100 ${
-                paymentMethod === 'wallet' ? 'bg-purple-50' : ''
+                paymentMethod === 'wallet' ? 'bg-green-50' : ''
               }`}
             >
               <span className="font-medium text-gray-900">EasyCollect Wallet</span>
               <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                 paymentMethod === 'wallet' ? 'border-purple-600' : 'border-gray-300'
               }`}>
-                {paymentMethod === 'wallet' && <div className="w-3 h-3 bg-purple-600 rounded-full" />}
+                {paymentMethod === 'wallet' && <div className="w-3 h-3 bg-green-600 rounded-full" />}
               </div>
             </button>
 
@@ -1734,14 +1743,14 @@ const CheckoutPage = () => {
             <button
               onClick={() => setPaymentMethod('transfer')}
               className={`w-full p-4 flex items-center justify-between ${
-                paymentMethod === 'transfer' ? 'bg-purple-50' : ''
+                paymentMethod === 'transfer' ? 'bg-green-50' : ''
               }`}
             >
               <span className="font-medium text-gray-900">Bank Transfer</span>
               <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                 paymentMethod === 'transfer' ? 'border-purple-600' : 'border-gray-300'
               }`}>
-                {paymentMethod === 'transfer' && <div className="w-3 h-3 bg-purple-600 rounded-full" />}
+                {paymentMethod === 'transfer' && <div className="w-3 h-3 bg-green-600 rounded-full" />}
               </div>
             </button>
           </div>
@@ -1751,7 +1760,7 @@ const CheckoutPage = () => {
         <button
           onClick={handlePay}
           disabled={isProcessing || !scriptLoaded}
-          className="w-full py-4 bg-purple-600 text-white rounded-xl font-semibold text-lg disabled:opacity-50"
+          className="w-full py-4 bg-green-600 text-white rounded-xl font-semibold text-lg disabled:opacity-50"
         >
           {isProcessing ? <Loader2 className="w-6 h-6 animate-spin mx-auto" /> : 'Pay Now'}
         </button>
@@ -1828,7 +1837,7 @@ const BankTransferPage = () => {
           <div className="mb-4">
             <p className="text-gray-500 text-sm mb-1">Bank Name</p>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-xs">P</span>
               </div>
               <span className="font-semibold text-gray-900">{bankDetails.bankName}</span>
@@ -1839,7 +1848,7 @@ const BankTransferPage = () => {
           <div className="mb-4">
             <p className="text-gray-500 text-sm mb-1">Account Number (Only for this transaction)</p>
             <div className="flex items-center gap-3">
-              <span className="text-3xl font-bold text-purple-600 tracking-wider">
+              <span className="text-3xl font-bold text-green-600 tracking-wider">
                 {bankDetails.accountNumber.match(/.{1,3}/g)?.join(' ')}
               </span>
               <button
@@ -1861,7 +1870,7 @@ const BankTransferPage = () => {
         {/* Countdown */}
         <div className="text-center mb-4">
           <span className="text-gray-500">Order Expires in </span>
-          <span className="text-purple-600 font-bold">
+          <span className="text-green-600 font-bold">
             {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
           </span>
         </div>
@@ -1869,7 +1878,7 @@ const BankTransferPage = () => {
         {/* Copy Button */}
         <button
           onClick={copyAccountNumber}
-          className="w-full py-4 bg-purple-600 text-white rounded-xl font-semibold text-lg mb-4"
+          className="w-full py-4 bg-green-600 text-white rounded-xl font-semibold text-lg mb-4"
         >
           Copy Account Number
         </button>
@@ -1955,7 +1964,7 @@ const PaymentSuccessPage = () => {
         {/* Complete Button */}
         <button
           onClick={() => navigate('/')}
-          className="w-full py-4 bg-purple-600 text-white rounded-xl font-semibold text-lg"
+          className="w-full py-4 bg-green-600 text-white rounded-xl font-semibold text-lg"
         >
           Complete
         </button>
