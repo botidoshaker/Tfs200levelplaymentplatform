@@ -38,7 +38,7 @@ const Settings: React.FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem('easycollect_current_user') || '{}');
+    const currentUser = JSON.parse(localStorage.getItem('easycollect_user') || '{}');
     if (currentUser.bankDetails) {
       setBankDetails(currentUser.bankDetails);
     }
@@ -75,9 +75,9 @@ const Settings: React.FC = () => {
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
 
-      const currentUser = JSON.parse(localStorage.getItem('easycollect_current_user') || '{}');
+      const currentUser = JSON.parse(localStorage.getItem('easycollect_user') || '{}');
       const updatedUser = { ...currentUser, bankDetails };
-      localStorage.setItem('easycollect_current_user', JSON.stringify(updatedUser));
+      localStorage.setItem('easycollect_user', JSON.stringify(updatedUser));
 
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
