@@ -8,7 +8,7 @@ interface PaystackPaymentProps {
   onSuccess: (reference: string, verified: boolean) => void;
   onClose: () => void;
   metadata?: {
-    collectionId?: string;
+    campaignId?: string;
     contributorName?: string;
     contributorPhone?: string;
   };
@@ -33,9 +33,9 @@ declare global {
   }
 }
 
-const PAYSTACK_PUBLIC_KEY = 'pk_test_9721481771baa92fa5c2c78e1c94f2b61ecdd38b';
+const PAYSTACK_PUBLIC_KEY = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY || 'pk_test_xxx';
 
-// Verify payment reference with Paystack API
+// Verify payment reference with backend API (NOT directly with Paystack)
 const verifyPayment = async (reference: string): Promise<{
   verified: boolean;
   status: string;
@@ -44,26 +44,53 @@ const verifyPayment = async (reference: string): Promise<{
   message?: string;
 }> => {
   try {
-    const response = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${PAYSTACK_PUBLIC_KEY}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    const token = localStorage.getItem('user');
+    let headers: HeadersInit = {
+      'Content-Type': 'application/json',
+    };
+
+    if (token) {
+      try {
+        const userData = JSON.parse(token);
+        if (userData.token) {
+          headers = {
+            ...headers,
+            'Authorization': `Bearer ${userData.token}`,
+          };
+        }
+      } catch {}
+    }
+
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/payments/verify/${reference}`,
+      {
+        method: 'GET',
+        headers,
+      }
+    );
 
     if (!response.ok) {
       throw new Error('Verification request failed');
     }
 
     const data = await response.json();
-    
+
+    if (data.success && data.data) {
+      return {
+        verified: data.data.status === 'completed',
+        status: data.data.status,
+        amount: data.data.amount,
+        currency: data.data.currency || 'NGN',
+        message: 'Payment verified successfully',
+      };
+    }
+
     return {
-      verified: data.status === true && data.data?.status === 'success',
+      verified: false,
       status: data.data?.status || 'unknown',
-      amount: data.data?.amount ? data.data.amount / 100 : 0,
-      currency: data.data?.currency || 'NGN',
-      message: data.message,
+      amount: 0,
+      currency: 'NGN',
+      message: data.message || 'Verification failed',
     };
   } catch (error) {
     console.error('Payment verification error:', error);
@@ -121,33 +148,34 @@ const PaystackPayment: React.FC<PaystackPaymentProps> = ({
       channels: ['card', 'bank', 'ussd', 'qr', 'mobile_money'],
       metadata: metadata ? JSON.stringify(metadata) : undefined,
       callback: async (response) => {
-        // Payment initiated - now verify it server-side
+        // Payment initiated - now verify it SERVER-SIDE via our backend
         setVerifying(true);
+
+        // IMPORTANT: We do NOT mark as successful here!
+        // The backend will verify via webhook and update the database
+        // This is just polling to check the status
         
-        const verificationResult = await verifyPayment(response.reference);
-        
-        setVerifying(false);
-        
-        if (verificationResult.verified) {
-          // Store transaction record
-          const transaction = {
-            reference: response.reference,
-            amount: amount,
-            email: email,
-            status: 'verified',
-            verifiedAt: new Date().toISOString(),
-            metadata: metadata || {},
-          };
-          
-          // Save to localStorage for demo purposes
-          const transactions = JSON.parse(localStorage.getItem('easycollect_transactions') || '[]');
-          transactions.push(transaction);
-          localStorage.setItem('easycollect_transactions', JSON.stringify(transactions));
-          
-          onSuccess(response.reference, true);
-        } else {
-          setError(`Payment verification failed: ${verificationResult.message || 'Transaction status: ' + verificationResult.status}`);
-        }
+        const maxAttempts = 10;
+        let attempts = 0;
+
+        const pollVerification = async () => {
+          attempts++;
+          const verificationResult = await verifyPayment(response.reference);
+
+          if (verificationResult.verified) {
+            setVerifying(false);
+            onSuccess(response.reference, true);
+          } else if (attempts < maxAttempts && verificationResult.status === 'pending') {
+            // Keep polling if still pending
+            setTimeout(pollVerification, 2000);
+          } else {
+            setVerifying(false);
+            // Show message that webhook will confirm
+            onSuccess(response.reference, false);
+          }
+        };
+
+        pollVerification();
       },
       onClose: () => {
         onClose();
